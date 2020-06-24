@@ -62,8 +62,6 @@ int enter_node_value() {
 		result = sscanf(user_input, "%d", &val);
 	}
 
-	printf("%d\n", result);
-
 	return val;
 }
 
