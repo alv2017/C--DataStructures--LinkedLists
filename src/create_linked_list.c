@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "linked_list.h"
+#include "../menu/menu.h"
 
 struct node *create_linked_list(struct node *start) {
 	struct node *new_node, *ptr;
 	int num;
 
-	printf("Enter -1 to terminate.\n");
-	printf("Enter node's data: ");
-	scanf("%d", &num);
+	printf("Creating a linked list. Enter node value, or -1 to terminate.\n");
+	num = enter_node_value();
 
 	while (num != -1) {
 		new_node = (struct node *) malloc(sizeof(struct node));
@@ -26,8 +26,7 @@ struct node *create_linked_list(struct node *start) {
 			ptr->next = new_node;
 			new_node->next = NULL;
 		}
-		printf("Enter node's data: ");
-		scanf("%d", &num);
+		num = enter_node_value();
 	}
 	return start;
 }
