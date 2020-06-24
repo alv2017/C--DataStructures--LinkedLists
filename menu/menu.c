@@ -22,13 +22,17 @@ short get_menu_length(const char **menu) {
 
 short select_option(short minopt, short maxopt) {
 	short opt = 0;
-	char option[10];
+	int result;
 
 	while (opt == 0) {
-		fflush(stdin);
+		char user_input[100] = {'\0'};
 		printf("Select option: ");
-		fgets(option, sizeof(option), stdin);
-		opt = atoi(option);
+		fgets(user_input, sizeof(user_input), stdin);
+		result = sscanf(user_input, "%hd", &opt);
+
+		if (result != 1) {
+			opt = 0;
+		}
 
 		if (opt < minopt || opt > maxopt) {
 			opt = 0;
