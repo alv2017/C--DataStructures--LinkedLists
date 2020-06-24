@@ -47,13 +47,22 @@ short select_option(short minopt, short maxopt) {
 }
 
 int enter_node_value() {
+	char user_input[100];
 	int val = 0;
-	char val_str[20];
+	int result;
 
-	fflush(stdin);
 	printf("Enter node value: ");
-	fgets(val_str, sizeof(val_str), stdin);
-	val = atoi(val_str);
+	fgets(user_input, sizeof(user_input), stdin);
+	result = sscanf(user_input, "%d", &val);
+
+	while (result != 1) {
+		printf("Invalid node entry. Please try again.\n");
+		printf("Enter node value: ");
+		fgets(user_input, sizeof(user_input), stdin);
+		result = sscanf(user_input, "%d", &val);
+	}
+
+	printf("%d\n", result);
 
 	return val;
 }
