@@ -11,9 +11,6 @@ struct node
 // Display linked list to stdin
 void display_list(struct node *start);
 
-// Create linked list
-struct node *create_linked_list(struct node *start);
-
 // Insert start node
 struct node *insert_first(struct node *start, int val, short *op_status);
 // Insert end node
