@@ -25,11 +25,18 @@ struct node *insert_first(struct node *start, int val, short *op_status) {
 
 struct node *insert_last(struct node *start, int val, short *op_status) {
 	struct node *new_node, *ptr;
+	new_node = NULL;
+	ptr = start;
+
 	// operation status
 	*op_status = 0;
 
-	ptr = start;
 	new_node = (struct node *)malloc(sizeof(struct node));
+	if (new_node == NULL) {
+		printf("Unable to insert a new node: Memory allocation failure.\n");
+		return start;
+	}
+
 	new_node->data = val;
 	new_node->next = NULL;
 
