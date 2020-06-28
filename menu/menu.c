@@ -46,7 +46,8 @@ short select_option(short minopt, short maxopt) {
 	return opt;
 }
 
-int enter_node_value() {
+int enter_node_value(short *op_status) {
+	*op_status = 0;
 	char user_input[100];
 	int val = 0;
 	int result;
@@ -55,13 +56,10 @@ int enter_node_value() {
 	fgets(user_input, sizeof(user_input), stdin);
 	result = sscanf(user_input, "%d", &val);
 
-	while (result != 1) {
-		printf("Invalid node entry. Please try again.\n");
-		printf("Enter node value: ");
-		fgets(user_input, sizeof(user_input), stdin);
-		result = sscanf(user_input, "%d", &val);
+	if (result != 1) {
+		return 0;
 	}
-
+	*op_status = 1;
 	return val;
 }
 

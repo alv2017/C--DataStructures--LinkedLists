@@ -48,18 +48,15 @@ int main(int argc, char **argv) {
 				break;
 
 			case 1:
-				printf("\nCreating a linked list\n");
 				// Creating a new linked list
-				llist = create_linked_list(llist);
+				printf("Enter the value of the new node or press ENTER to exit.\n");
+				node_value = enter_node_value(&op_status);
 
-				clear();
-				if (llist == NULL) {
-					printf("Failed to create a new linked list.\n");
+				while(op_status == 1) {
+					llist = insert_last(llist, node_value, &op_status);
+					printf("Enter the value of the new node or press ENTER to exit.\n");
+					node_value = enter_node_value(&op_status);
 				}
-				else {
-					printf("A new linked list has been created.\n");
-				}
-				printf("\n");
 
 				// Asking user for further actions
 				display_menu(menu);
@@ -80,8 +77,7 @@ int main(int argc, char **argv) {
 			case 3:
 				clear();
 				printf("Adding a new node at the beginning.\n");
-				op_status = 0;
-				node_value = enter_node_value();
+				node_value = enter_node_value(&op_status);
 				llist = insert_first(llist, node_value, &op_status);
 
 				if (op_status == 0) {
@@ -100,8 +96,7 @@ int main(int argc, char **argv) {
 			case 4:
 				clear();
 				printf("Adding a new node at the end.\n");
-				op_status = 0;
-				node_value = enter_node_value();
+				node_value = enter_node_value(&op_status);
 				llist = insert_last(llist, node_value, &op_status);
 
 				if (op_status == 0) {
@@ -120,11 +115,10 @@ int main(int argc, char **argv) {
 			case 5:
 				clear();
 				printf("Adding a new node before a given node.\n");
-				op_status = 0;
 				printf("Enter the value of the node before which you want to insert a new node.\n");
-				before_value = enter_node_value();
+				before_value = enter_node_value(&op_status);
 				printf("Enter the value of the new node.\n");
-				node_value = enter_node_value();
+				node_value = enter_node_value(&op_status);
 				llist = insert_before_node(llist, before_value, node_value, &op_status);
 
 				if (op_status == 0) {
@@ -143,11 +137,10 @@ int main(int argc, char **argv) {
 			case 6:
 				clear();
 				printf("Adding a new node after a given node.\n");
-				op_status = 0;
 				printf("Enter the value of the node after which you want to insert a new node.\n");
-				after_value = enter_node_value();
+				after_value = enter_node_value(&op_status);
 				printf("Enter the value of the new node.\n");
-				node_value = enter_node_value();
+				node_value = enter_node_value(&op_status);
 				llist = insert_after_node(llist, after_value, node_value, &op_status);
 
 				if (op_status == 0) {
@@ -185,7 +178,6 @@ int main(int argc, char **argv) {
 			case 8:
 				clear();
 				printf("Deleting a node new node at the end.\n");
-				op_status = 0;
 				llist = delete_last(llist, &op_status);
 
 				if (op_status == 0) {
@@ -204,8 +196,7 @@ int main(int argc, char **argv) {
 			case 9:
 				clear();
 				printf("Deleting a node with a given value.\n");
-				op_status = 0;
-				node_value = enter_node_value();
+				node_value = enter_node_value(&op_status);
 				llist = delete_node(llist, node_value, &op_status);
 
 				if (op_status == 0) {
@@ -224,9 +215,8 @@ int main(int argc, char **argv) {
 			case 10:
 				clear();
 				printf("Deleting a node before a node with a given value.\n");
-				op_status = 0;
 				printf("Enter the value of the node that goes before the node you want to delete.\n");
-				before_value = enter_node_value();
+				before_value = enter_node_value(&op_status);
 				llist = delete_node_before(llist, before_value, &op_status);
 
 				if (op_status == 0) {
@@ -245,9 +235,8 @@ int main(int argc, char **argv) {
 			case 11:
 				clear();
 				printf("Deleting a node after.\n");
-				op_status = 0;
 				printf("Enter the value of the node after which you want to delete a node.\n");
-				after_value = enter_node_value();
+				after_value = enter_node_value(&op_status);
 				llist = delete_node_after(llist, after_value, &op_status);
 
 				if (op_status == 0) {
@@ -265,7 +254,6 @@ int main(int argc, char **argv) {
 
 			case 12:
 				clear();
-				op_status = 0;
 				printf("Deleting entire list.\n");
 				llist = delete_list(llist, &op_status);
 
