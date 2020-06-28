@@ -70,6 +70,10 @@ struct node *insert_before_node(struct node *start, int before_val, int val, sho
 		if (ptr->data == before_val) {
 			struct node *new_node;
 			new_node = (struct node *)malloc(sizeof(struct node));
+			if (new_node == NULL) {
+				printf("Unable to insert a new node: Memory allocation failure.\n");
+				return start;
+			}
 			new_node->data = val;
 			new_node->next = ptr;
 			if (preptr != NULL){
