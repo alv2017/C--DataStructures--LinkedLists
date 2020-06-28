@@ -48,18 +48,15 @@ int main(int argc, char **argv) {
 				break;
 
 			case 1:
-				printf("\nCreating a linked list\n");
 				// Creating a new linked list
-				llist = create_linked_list(llist);
+				printf("Enter the value of the new node or press ENTER to exit.\n");
+				node_value = enter_node_value(&op_status);
 
-				clear();
-				if (llist == NULL) {
-					printf("Failed to create a new linked list.\n");
+				while(op_status == 1) {
+					llist = insert_last(llist, node_value, &op_status);
+					printf("Enter the value of the new node or press ENTER to exit.\n");
+					node_value = enter_node_value(&op_status);
 				}
-				else {
-					printf("A new linked list has been created.\n");
-				}
-				printf("\n");
 
 				// Asking user for further actions
 				display_menu(menu);
