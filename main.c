@@ -43,9 +43,12 @@ int main(int argc, char **argv) {
 		printf("You have selected: %d\n", opt);
 		switch (opt) {
 			case 14:
+				// Exiting the program
+				if (llist != NULL) {
+					llist = delete_list(llist, &op_status);
+				}
 				printf("Exiting the program.\n");
 				return 0;
-				break;
 
 			case 1:
 				// Creating a new linked list
