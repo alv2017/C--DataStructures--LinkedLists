@@ -69,7 +69,7 @@ long enter_node_number(short *op_status) {
 	long val = 0;
 	int result;
 
-	printf("Enter node value: ");
+	printf("Enter node number: \n");
 	fgets(user_input, sizeof(user_input), stdin);
 	result = sscanf(user_input, "%ld", &val);
 
