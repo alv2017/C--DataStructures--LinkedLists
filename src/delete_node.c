@@ -136,5 +136,42 @@ struct node *delete_node_after(struct node *start, int after_val, short *op_stat
 	return start;
 }
 
+struct node *delete_node_n(struct node *start, long n, short *op_status) {
+	*op_status = 0;
+	long node_counter = 1;
+	struct node *ptr, *preptr;
+	preptr = NULL;
+	ptr = start;
+
+	// The list is empty
+	if (start == NULL) {
+		printf("The list is empty. Nothing to delete.\n");
+		return start;
+	}
+	// Navigate to the n-th node
+	while(ptr->next != NULL) {
+		if (node_counter == n) break;
+		preptr = ptr;
+		ptr = ptr->next;
+		node_counter++;
+	}
+	// We have less than n nodes in the list
+	if (node_counter < n) {
+		printf("There are less than %ld nodes in the list. ", n);
+		printf("Nothing to delete.\n");
+		return start;
+	}
+	// All other cases
+	if (preptr == NULL) {
+		start = ptr->next;
+	}
+	else {
+		preptr->next = ptr->next;
+	}
+	free(ptr);
+	*op_status = 1;
+	return start;
+}
+
 
 

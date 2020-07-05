@@ -17,9 +17,10 @@ const char *menu[] = {
 		" 9. Delete node by value",
 		"10. Delete node before given node",
 		"11. Delete node after given node",
-		"12. Delete entire list",
+		"12. Delete the n-th node",
 		"13. Sort the list",
-		"14. Exit",
+		"14. Delete entire list",
+		"15. Exit",
 		NULL
 };
 
@@ -42,7 +43,7 @@ int main(int argc, char **argv) {
 	while (1) {
 		printf("You have selected: %d\n", opt);
 		switch (opt) {
-			case 14:
+			case 15:
 				// Exiting the program
 				if (llist != NULL) {
 					llist = delete_list(llist, &op_status);
@@ -257,15 +258,16 @@ int main(int argc, char **argv) {
 
 			case 12:
 				clear();
-				printf("Deleting entire list.\n");
-				llist = delete_list(llist, &op_status);
-
-				if (op_status == 0) {
-					printf("Failed to delete the list.\n");
+				printf("Deleting the n-th node.\n");
+				long node_number;
+				node_number = enter_node_number(&op_status);
+				printf("\nTrying to delete node number %ld.\n", node_number);
+				llist = delete_node_n(llist, node_number, &op_status);
+				if (op_status==1) {
+					printf("Node has been deleted.\n");
 				}
 				else {
-					printf("Linked list has been deleted.\n");
-					op_status = 0;
+					printf("Failed to delete the node.\n");
 				}
 
 				// Asking user for further actions;
@@ -277,6 +279,24 @@ int main(int argc, char **argv) {
 				clear();
 				printf("Sort a list.\n");
 				llist = sort_list(llist);
+
+				// Asking user for further actions;
+				display_menu(menu);
+				opt = select_option(MINOPT, MAXOPT);
+				break;
+
+			case 14:
+				clear();
+				printf("Deleting entire list.\n");
+				llist = delete_list(llist, &op_status);
+
+				if (op_status == 0) {
+					printf("Failed to delete the list.\n");
+				}
+				else {
+					printf("Linked list has been deleted.\n");
+					op_status = 0;
+				}
 
 				// Asking user for further actions;
 				display_menu(menu);

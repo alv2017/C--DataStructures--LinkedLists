@@ -63,6 +63,25 @@ int enter_node_value(short *op_status) {
 	return val;
 }
 
+long enter_node_number(short *op_status) {
+	*op_status = 0;
+	char user_input[100];
+	long val = 0;
+	int result;
+
+	printf("Enter node number: \n");
+	fgets(user_input, sizeof(user_input), stdin);
+	result = sscanf(user_input, "%ld", &val);
+
+	while (result != 1 || val < 1) {
+		printf("Invalid node value. Enter node number: ");
+		fgets(user_input, sizeof(user_input), stdin);
+		result = sscanf(user_input, "%ld", &val);
+	}
+	*op_status = 1;
+	return val;
+}
+
 
 
 
