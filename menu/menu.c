@@ -74,7 +74,7 @@ long enter_node_number(short *op_status) {
 	result = sscanf(user_input, "%ld", &val);
 
 	while (result != 1 || val < 1) {
-		printf("Invalid node value. Enter node value: ");
+		printf("Invalid node value. Enter node number: ");
 		fgets(user_input, sizeof(user_input), stdin);
 		result = sscanf(user_input, "%ld", &val);
 	}
