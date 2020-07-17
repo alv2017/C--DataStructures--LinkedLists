@@ -55,13 +55,17 @@ int main(int argc, char **argv) {
 			case 1:
 				// Creating a new linked list
 				clear();
-				printf("Enter the value of the new node or press ENTER to exit.\n");
-				node_value = enter_node_value(&op_status);
-
-				while(op_status == 1) {
-					llist = insert_last(llist, node_value, &op_status);
+				if (llist != NULL) {
+					printf("The list already exists. ");
+					printf("You need to delete the existing list before creating a new one.\n");
+				} else {
 					printf("Enter the value of the new node or press ENTER to exit.\n");
 					node_value = enter_node_value(&op_status);
+					while(op_status == 1) {
+						llist = insert_last(llist, node_value, &op_status);
+						printf("Enter the value of the new node or press ENTER to exit.\n");
+						node_value = enter_node_value(&op_status);
+					}
 				}
 				break;
 
