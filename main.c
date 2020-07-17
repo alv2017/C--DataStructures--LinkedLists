@@ -39,12 +39,13 @@ int main(int argc, char **argv) {
 	clear();
 	display_menu(menu);
 	opt = select_option(MINOPT, MAXOPT);
+	printf("You have selected: %d\n", opt);
 
 	while (1) {
-		printf("You have selected: %d\n", opt);
 		switch (opt) {
 			case 15:
 				// Exiting the program
+				clear();
 				if (llist != NULL) {
 					llist = delete_list(llist, &op_status);
 				}
@@ -53,6 +54,7 @@ int main(int argc, char **argv) {
 
 			case 1:
 				// Creating a new linked list
+				clear();
 				printf("Enter the value of the new node or press ENTER to exit.\n");
 				node_value = enter_node_value(&op_status);
 
@@ -61,24 +63,17 @@ int main(int argc, char **argv) {
 					printf("Enter the value of the new node or press ENTER to exit.\n");
 					node_value = enter_node_value(&op_status);
 				}
-
-				// Asking user for further actions
-				display_menu(menu);
-				opt = select_option(MINOPT, MAXOPT);
-
 				break;
 
 			case 2:
+				// Displaying linked list
 				clear();
 				printf("Displaying a list:\n");
 				display_list(llist);
-
-				// Asking user for further actions;
-				display_menu(menu);
-				opt = select_option(MINOPT, MAXOPT);
 				break;
 
 			case 3:
+				// Adding new node at the beginning
 				clear();
 				printf("Adding a new node at the beginning.\n");
 				node_value = enter_node_value(&op_status);
@@ -91,13 +86,10 @@ int main(int argc, char **argv) {
 					printf("New node has been added.\n");
 					op_status = 0;
 				}
-
-				// Asking user for further actions;
-				display_menu(menu);
-				opt = select_option(MINOPT, MAXOPT);
 				break;
 
 			case 4:
+				// Adding a new node at the end
 				clear();
 				printf("Adding a new node at the end.\n");
 				node_value = enter_node_value(&op_status);
@@ -110,13 +102,10 @@ int main(int argc, char **argv) {
 					printf("New node has been added.\n");
 					op_status = 0;
 				}
-
-				// Asking user for further actions;
-				display_menu(menu);
-				opt = select_option(MINOPT, MAXOPT);
 				break;
 
 			case 5:
+				// Adding a new node before a given node
 				clear();
 				printf("Adding a new node before a given node.\n");
 				printf("Enter the value of the node before which you want to insert a new node.\n");
@@ -132,13 +121,10 @@ int main(int argc, char **argv) {
 					printf("New node has been added.\n");
 					op_status = 0;
 				}
-
-				// Asking user for further actions;
-				display_menu(menu);
-				opt = select_option(MINOPT, MAXOPT);
 				break;
 
 			case 6:
+				// Adding a new node after a given node
 				clear();
 				printf("Adding a new node after a given node.\n");
 				printf("Enter the value of the node after which you want to insert a new node.\n");
@@ -154,13 +140,10 @@ int main(int argc, char **argv) {
 					printf("New node has been added.\n");
 					op_status = 0;
 				}
-
-				// Asking user for further actions;
-				display_menu(menu);
-				opt = select_option(MINOPT, MAXOPT);
 				break;
 
 			case 7:
+				// Deleting a node at the beginning
 				clear();
 				printf("Deleting a node at the beginning.\n");
 				op_status = 0;
@@ -173,15 +156,12 @@ int main(int argc, char **argv) {
 					printf("Node has been deleted.\n");
 					op_status = 0;
 				}
-
-				// Asking user for further actions;
-				display_menu(menu);
-				opt = select_option(MINOPT, MAXOPT);
 				break;
 
 			case 8:
+				// Deleting a node at the end
 				clear();
-				printf("Deleting a node new node at the end.\n");
+				printf("Deleting a node at the end.\n");
 				llist = delete_last(llist, &op_status);
 
 				if (op_status == 0) {
@@ -191,13 +171,10 @@ int main(int argc, char **argv) {
 					printf("Node has been deleted.\n");
 					op_status = 0;
 				}
-
-				// Asking user for further actions;
-				display_menu(menu);
-				opt = select_option(MINOPT, MAXOPT);
 				break;
 
 			case 9:
+				// Deleting a node with a given value
 				clear();
 				printf("Deleting a node with a given value.\n");
 				node_value = enter_node_value(&op_status);
@@ -210,15 +187,12 @@ int main(int argc, char **argv) {
 					printf("Node has been deleted.\n");
 					op_status = 0;
 				}
-
-				// Asking user for further actions;
-				display_menu(menu);
-				opt = select_option(MINOPT, MAXOPT);
 				break;
 
 			case 10:
+				// Deleting a node before the node with a given value
 				clear();
-				printf("Deleting a node before a node with a given value.\n");
+				printf("Deleting a node before the node with a given value.\n");
 				printf("Enter the value of the node that goes before the node you want to delete.\n");
 				before_value = enter_node_value(&op_status);
 				llist = delete_node_before(llist, before_value, &op_status);
@@ -230,15 +204,12 @@ int main(int argc, char **argv) {
 					printf("Node has been deleted.\n");
 					op_status = 0;
 				}
-
-				// Asking user for further actions;
-				display_menu(menu);
-				opt = select_option(MINOPT, MAXOPT);
 				break;
 
 			case 11:
+				// Deleting a node after the given node
 				clear();
-				printf("Deleting a node after.\n");
+				printf("Deleting a node after the given node.\n");
 				printf("Enter the value of the node after which you want to delete a node.\n");
 				after_value = enter_node_value(&op_status);
 				llist = delete_node_after(llist, after_value, &op_status);
@@ -250,13 +221,10 @@ int main(int argc, char **argv) {
 					printf("Node has been deleted.\n");
 					op_status = 0;
 				}
-
-				// Asking user for further actions;
-				display_menu(menu);
-				opt = select_option(MINOPT, MAXOPT);
 				break;
 
 			case 12:
+				// Deleting the n-th node
 				clear();
 				printf("Deleting the n-th node.\n");
 				long node_number;
@@ -269,20 +237,13 @@ int main(int argc, char **argv) {
 				else {
 					printf("Failed to delete the node.\n");
 				}
-
-				// Asking user for further actions;
-				display_menu(menu);
-				opt = select_option(MINOPT, MAXOPT);
 				break;
 
 			case 13:
+				// Sorting a list
 				clear();
 				printf("Sort a list.\n");
 				llist = sort_list(llist);
-
-				// Asking user for further actions;
-				display_menu(menu);
-				opt = select_option(MINOPT, MAXOPT);
 				break;
 
 			case 14:
@@ -297,16 +258,16 @@ int main(int argc, char **argv) {
 					printf("Linked list has been deleted.\n");
 					op_status = 0;
 				}
-
-				// Asking user for further actions;
-				display_menu(menu);
-				opt = select_option(MINOPT, MAXOPT);
 				break;
 
 			default:
 			  printf("Unknown option: %d\n", opt);
 			  break;
 		}
+		// Asking user for further actions
+		display_menu(menu);
+		opt = select_option(MINOPT, MAXOPT);
+		printf("You have selected: %d\n", opt);
 	}
 	return 0;
 }
